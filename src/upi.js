@@ -147,16 +147,31 @@ export function buildUpiUri({ upiId, payeeName, amountPaise, note }) {
     throw new Error(`UPI id does not look valid: ${pa || '(empty)'}`);
   }
 
-  const params = new URLSearchParams();
-  params.set('pa', pa);
-  // The payee name is what the payer sees before they confirm. UPI apps choke on
-  // some punctuation here, so keep it to letters, digits and spaces.
-  params.set('pn', String(payeeName || '').replace(/[^\w &.-]/g, '').trim().slice(0, 40) || 'Payee');
-  params.set('am', formatAmount(amountPaise));
-  params.set('cu', 'INR');
-  if (note) params.set('tn', String(note).replace(/[^\w -]/g, '').slice(0, 50));
+  // Letters, digits and spaces only — UPI apps choke on other punctuation in the
+  // payee name, and `&` here would break the query if it survived.
+  const pn = String(payeeName || '').replace(/[^\w &.-]/g, '').trim().slice(0, 40) || 'Payee';
+  const am = formatAmount(amountPaise);
+  const tn = note ? String(note).replace(/[^\w -]/g, '').slice(0, 50) : '';
 
-  // URLSearchParams encodes a space as `+`. UPI apps are inconsistent about
-  // decoding that, and %20 is understood everywhere.
-  return `upi://pay?${params.toString().replace(/\+/g, '%20')}`;
+  /*
+   * The query is built by hand, on purpose. `URLSearchParams` percent-encodes the
+   * `@` in `pa` to `%40`, which is technically correct but breaks real phones:
+   * BHIM (and a few others) do not decode `%40` in this field and try to pay a
+   * VPA literally spelled "name%40bank", which does not exist. `@` is a legal
+   * query character (RFC 3986 sub-delims) and the regex above proves `pa` holds
+   * nothing else that needs escaping, so it goes out verbatim.
+   *
+   * Everything that CAN carry an unsafe character — `pn` may hold `&` or a space —
+   * is run through encodeURIComponent, which also emits `%20` for a space rather
+   * than the `+` that `URLSearchParams` produces and that UPI apps decode
+   * inconsistently. `am` (digits + dot) and `cu` need no escaping.
+   */
+  const query =
+    `pa=${pa}` +
+    `&pn=${encodeURIComponent(pn)}` +
+    `&am=${am}` +
+    `&cu=INR` +
+    (tn ? `&tn=${encodeURIComponent(tn)}` : '');
+
+  return `upi://pay?${query}`;
 }
