@@ -1,0 +1,42 @@
+Delivered-To: yourmailbox@gmail.com
+Return-Path: <no-reply@famapp.in>
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@famapp.in header.s=s1 header.b=XXXXXXXX;
+       spf=pass (google.com: domain of no-reply@famapp.in designates 0.0.0.0 as permitted sender) smtp.mailfrom=no-reply@famapp.in;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=famapp.in
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=famapp.in; s=s1;
+ t=0000000000; h=From:Subject:To:Date:MIME-Version:Content-Type:Message-ID;
+ bh=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX=;
+ b=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amazonses.com; s=abc;
+ t=0000000000; h=From:Subject:To:Date:MIME-Version:Content-Type:Message-ID;
+ bh=YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY=;
+ b=YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+From: FamApp <no-reply@famapp.in>
+To: yourmailbox@gmail.com
+Subject: =?UTF-8?Q?You_received_=E2=82=B91.07_in_your_FamX_account?=
+Date: Thu, 27 Aug 2026 12:59:13 +0000
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="----=_Part_00000000"
+Message-ID: <example-0000000000-0000-0000-0000-000000000000-000000@ap-south-1.amazonses.com>
+
+This is a multi-part message in MIME format.
+
+------=_Part_00000000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Hey Xxxxxx Xxxxxx, You have successfully received =E2=82=B91.07 from Yyyyyy=
+ Yyyyyy at 06:29 PM IST, 27 August 2026 with transaction id FMPIBXXXXXXXXXX=
+. Your updated balance is =E2=82=B99.99. UTR: 999999999999. Purpose: Paid v=
+ia CRED.
+
+------=_Part_00000000
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><body><p>Hey Xxxxxx Xxxxxx, You have successfully received <b>=E2=82=
+=B91.07</b> from Yyyyyy Yyyyyy with transaction id FMPIBXXXXXXXXXX. Your upd=
+ated balance is =E2=82=B99.99. UTR: 999999999999.</p></body></html>
+
+------=_Part_00000000--

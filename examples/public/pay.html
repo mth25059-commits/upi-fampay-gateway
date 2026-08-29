@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pay — UPI FamPay Gateway</title>
+<link rel="stylesheet" href="/pay.css" />
+</head>
+<body>
+<main class="wrap">
+  <header class="head">
+    <div class="logo" aria-hidden="true">₹</div>
+    <div>
+      <h1>UPI Payment</h1>
+      <p class="sub" id="payeeSub">Pay securely over UPI</p>
+    </div>
+  </header>
+
+  <!-- Step 1: pick / create an order -->
+  <section class="card" id="startCard">
+    <label class="field">
+      <span>Amount to charge (₹)</span>
+      <input id="priceInput" type="number" min="1" step="1" value="499" inputmode="numeric" />
+    </label>
+    <button class="btn primary" id="createBtn" type="button">Create payment</button>
+    <p class="note" id="startNote"></p>
+  </section>
+
+  <!-- Step 2: the payment screen -->
+  <section class="card pay" id="payCard" hidden>
+    <div class="amount">
+      <span class="amount-label">Pay exactly</span>
+      <span class="amount-value" id="amountValue">₹0</span>
+      <span class="amount-hint">The paise are unique to this order — please don't round.</span>
+    </div>
+
+    <div class="qr" id="qrBox" aria-label="Scan to pay"></div>
+
+    <a class="btn primary" id="openApp" href="#">Open in UPI app</a>
+
+    <div class="upi-row">
+      <span class="upi-id" id="upiId">—</span>
+      <button class="btn ghost" id="copyBtn" type="button">Copy UPI ID</button>
+    </div>
+
+    <div class="status waiting" id="statusBox">
+      <span class="spinner" aria-hidden="true"></span>
+      <span id="statusText">Waiting for your payment…</span>
+    </div>
+
+    <button class="btn ghost demo" id="demoBtn" type="button" hidden>I paid (demo)</button>
+    <button class="btn link" id="againBtn" type="button">Start over</button>
+  </section>
+</main>
+
+<script src="/pay.js" type="module"></script>
+</body>
+</html>

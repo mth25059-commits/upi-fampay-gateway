@@ -1,0 +1,30 @@
+{
+  "name": "upi-fampay-gateway",
+  "version": "1.0.0",
+  "description": "Self-confirming UPI payments: quote each order a unique amount, show a QR, and read the bank's own alert email (DKIM-verified) to mark it paid. Zero dependencies.",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node examples/server.js",
+    "test": "node test/payments.test.js && node test/mailbox.test.js"
+  },
+  "keywords": [
+    "upi",
+    "payments",
+    "fampay",
+    "qr",
+    "imap",
+    "india",
+    "gateway",
+    "dkim",
+    "zero-dependency"
+  ],
+  "license": "MIT",
+  "dependencies": {}
+}
